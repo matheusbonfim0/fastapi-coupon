@@ -1,7 +1,7 @@
 from fastapi import HTTPException, APIRouter
 
-from schemas import StandardOutput, UserCreateGift
-from services import UserService
+from domain.coupon.entities import StandardOutput, UserCreateGift
+from domain.coupon.protocols import UserService
 
 user_router = APIRouter(prefix='/user')
 
