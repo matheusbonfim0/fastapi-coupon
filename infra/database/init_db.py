@@ -1,7 +1,7 @@
 from asyncio import run
 
 from connection import engine
-from models import Base
+from infra.database.models.coupon import Base
 
 async def create_database():
     async with engine.begin() as connection:
