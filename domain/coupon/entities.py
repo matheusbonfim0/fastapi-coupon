@@ -9,10 +9,10 @@ class CouponDiscountType(str, Enum):
     cash_value = 'value'
 
 class CouponPlataformUse(str, Enum):
+    all_ = 'all'
     ally = 'Ally'
     orb = 'ORB'
     xpert = 'Xpert'
-    all_ = 'all'
 
 class Coupon(BaseModel):
     id: UUID4
