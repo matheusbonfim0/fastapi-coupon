@@ -1,8 +1,13 @@
-from fastapi import FastAPI, APIRouter
-from routes import user_router
+import uvicorn
+from api.app import init_app
 
-app = FastAPI()
-router = APIRouter()
+web_app = init_app
 
-app.include_router(prefix='/first', router=router)
-app.include_router(user_router)
+def start_web_server() -> None:
+    uvicorn.run(
+        "main:web_app",
+
+    )
+
+if __name__ == '__main__':
+    start_web_server()
