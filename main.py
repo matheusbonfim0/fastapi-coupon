@@ -1,6 +1,6 @@
 import uvicorn
-from api.app import init_app
-from config.environoment import get_settings
+from coupons.api.app import init_app
+from coupons.config.environoment import get_settings
 
 _SETTINGS = get_settings()
 

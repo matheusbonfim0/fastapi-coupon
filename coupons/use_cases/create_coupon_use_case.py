@@ -3,9 +3,9 @@
 from datetime import date
 from uuid import UUID
 
-from domain.coupon.entities import  Coupon, CouponDiscountType, CouponPlataformUse
-from domain.coupon.protocols import CouponRepo
-from domain.coupon.exceptions import CouponAlreadyRegisteredError
+from coupons.domain.coupon.entities import  Coupon, CouponDiscountType, CouponPlataformUse
+from coupons.domain.coupon.protocols import CouponRepo
+from coupons.domain.coupon.exceptions import CouponAlreadyRegisteredError
 
 class CreateCouponUseCase:
     def __init__(self, repo: CouponRepo) -> None:
@@ -14,7 +14,7 @@ class CreateCouponUseCase:
     async def __call__(
        self, 
        company_id: UUID,
-       name: str,
+       code: str,
        expiration: date,
        discount_type: CouponDiscountType,
        quantity: str,
@@ -22,13 +22,13 @@ class CreateCouponUseCase:
        activated: bool,
     ) -> Coupon:
         coupon = await self._repo.fetch_by_company_and_coupon(
-            company_id, name
+            company_id, code
         )
         if coupon:
-            raise CouponAlreadyRegisteredError(name)
+            raise CouponAlreadyRegisteredError(code)
         coupon = await self._repo.save(
             company_id,
-            name,
+            code,
             expiration,
             discount_type,
             quantity,
