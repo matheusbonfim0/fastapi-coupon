@@ -7,7 +7,7 @@ class CouponRepo(Protocol):
     async def save(
         self,
         company_id: UUID,
-        name: str, 
+        code: str, 
         expiration: date, 
         discount_type:str, 
         quantity: str,

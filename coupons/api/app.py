@@ -1,7 +1,7 @@
 from fastapi.applications import FastAPI
 from toolz import pipe
 
-from api.routers import register_routers as register_routers
+from coupons.api.routers import register_routers as register_routers
 
 
 def init_app() -> FastAPI:

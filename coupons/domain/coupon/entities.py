@@ -10,13 +10,13 @@ class CouponDiscountType(str, Enum):
 
 class CouponPlataformUse(str, Enum):
     all_ = 'all'
-    ally = 'Ally'
-    orb = 'ORB'
-    xpert = 'Xpert'
+    ally = 'ally'
+    orb = 'orb'
+    xpert = 'xpert'
 
 class Coupon(BaseModel):
     id: UUID4
-    name: str
+    code: str
     expire: date
     discount_type: CouponDiscountType
     quantity: str

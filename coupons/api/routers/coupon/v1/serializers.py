@@ -11,7 +11,7 @@ from utils import validate
 
 
 class CreateCouponRequest(BaseModel):
-    name: str = Field(
+    code: str = Field(
         ...,
         title="Coupon name ex.: CARNA150",
         description="This is a coupon name, if the tourist will be use",
@@ -29,15 +29,15 @@ class CreateCouponRequest(BaseModel):
         description="This is the quantity the coupons will be available",
         max_length=4,
     )
-    plataform: Literal['all', 'Ally', 'ORB', 'Xpert']
+    plataform: Literal['all', 'ally', 'orb', 'xpert']
 
 
 class CreateCouponResponse(BaseModel):
     id: UUID
-    name: str
+    code: str
     expire: date
     discount_type: Literal['percent', 'value']
     quantity: str
-    plataform: Literal['all', 'Ally', 'ORB', 'Xpert']
+    plataform: Literal['all', 'ally', 'orb', 'xpert']
     company_id: UUID
     activated: bool
