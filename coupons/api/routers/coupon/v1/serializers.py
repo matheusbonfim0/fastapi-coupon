@@ -2,7 +2,7 @@ from datetime import datetime
 
 
 from datetime import date
-from typing import Literal
+from typing import Literal,Optional
 from uuid import UUID
 
 from pydantic import BaseModel, Field, validator
@@ -15,7 +15,7 @@ class CreateCouponRequest(BaseModel):
         ...,
         title="Coupon name ex.: CARNA150",
         description="This is a coupon name, if the tourist will be use",
-        max_length=8,
+        
     )
     expiration: date = Field(
         ...,
@@ -29,7 +29,7 @@ class CreateCouponRequest(BaseModel):
         description="This is the quantity the coupons will be available",
         max_length=4,
     )
-    plataform: Literal['all', 'ally', 'orb', 'xpert']
+    plataform: Optional[Literal['all', 'ally', 'orb', 'xpert']]
 
 
 class CreateCouponResponse(BaseModel):
@@ -38,6 +38,6 @@ class CreateCouponResponse(BaseModel):
     expire: date
     discount_type: Literal['percent', 'value']
     quantity: str
-    plataform: Literal['all', 'ally', 'orb', 'xpert']
+    plataform: Optional[Literal['all', 'ally', 'orb', 'xpert']]
     company_id: UUID
     activated: bool
