@@ -1,11 +1,8 @@
-from http import HTTPStatus
-from http.client import responses
 
 from fastapi import APIRouter, HTTPException, status
 from fastapi.responses import JSONResponse
-import use_cases
 
-from use_cases.create_coupon_use_case import CreateCouponUseCase
+import use_cases
 from .serializers import CreateCouponRequest, CreateCouponResponse
 
 router = APIRouter()
@@ -15,6 +12,7 @@ router = APIRouter(default_response_class=JSONResponse)
     '/coupons',
     response_model=CreateCouponResponse,
     status_code=status.HTTP_201_CREATED,
+    tags=["Coupons"],
     responses={
         201: {
             "description": "Coupon registered", 

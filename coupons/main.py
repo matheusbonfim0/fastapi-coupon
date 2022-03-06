@@ -1,10 +1,14 @@
 import uvicorn
-from coupons.api.app import init_app
-from coupons.config.environoment import get_settings
+
+from api.app import init_app
+from config.environment import get_settings
+
 
 _SETTINGS = get_settings()
 
+
 web_app = init_app(_SETTINGS)
+
 
 def start_web_server() -> None:
     settings = get_settings()
