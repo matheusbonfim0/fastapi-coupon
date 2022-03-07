@@ -1,4 +1,4 @@
-from sqlalchemy import TIMESTAMP, UniqueConstraint, text
+from sqlalchemy import TIMESTAMP, UniqueConstraint, null, text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.schema import Column, Table
 from sqlalchemy.sql import func
@@ -13,6 +13,7 @@ Coupon = Table(
     Column("code", Text(), nullable=False),
     Column("expire_at", Date(), nullable=False),
     Column("discount_type", Text(), nullable=False),
+    Column("value", Text(), nullable=False),
     Column("quantity", Text(), nullable=False),
     Column("plataform", Text(), nullable=False),
     Column("company_id", UUID(), nullable=False),
