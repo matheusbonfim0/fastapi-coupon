@@ -1,5 +1,3 @@
-from datetime import datetime
-
 
 from datetime import date
 from typing import Literal,Optional
@@ -23,6 +21,11 @@ class CreateCouponRequest(BaseModel):
         description="This is the coupon expiration for promotion"
     )
     discount_type: Literal['percent', 'value']
+    value: str = Field(
+        ...,
+        title="Coupon Value",
+        description="This is the value about theu coupons",
+    )
     quantity: str = Field(
         ...,
         title="Quantity the coupons make",
@@ -31,13 +34,33 @@ class CreateCouponRequest(BaseModel):
     )
     plataform: Optional[Literal['all', 'ally', 'orb', 'xpert']]
 
+    @validator("expiration")
+    def validate_expiration(cls, expiration):
+        if not validate.expiry_date_greater_than_current_date(expiration):
+            raise ValueError("must be a valid date")
+        return expiration
 
 class CreateCouponResponse(BaseModel):
     id: UUID
     code: str
     expire: date
     discount_type: Literal['percent', 'value']
+    value: str
     quantity: str
     plataform: Optional[Literal['all', 'ally', 'orb', 'xpert']]
     company_id: UUID
     activated: bool
+
+class CouponAlreadyRegisteredResponse(BaseModel):
+    class Detail(BaseModel):
+        msg: str
+        id: str
+    
+    detail: Detail
+
+class CouponNotFoundResponse(BaseModel):
+    class Detail(BaseModel):
+        msg: str
+        id: str
+
+    detail: Detail

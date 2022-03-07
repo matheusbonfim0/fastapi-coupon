@@ -9,6 +9,7 @@ class CouponRepo(Protocol):
         company_id: UUID,
         code: str, 
         expiration: date, 
+        value: str,
         discount_type:str, 
         quantity: str,
         plataform: str,

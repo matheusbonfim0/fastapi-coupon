@@ -17,8 +17,9 @@ class CouponPlataformUse(str, Enum):
 class Coupon(BaseModel):
     id: UUID4
     code: str
-    expire: date
+    expiration: date
     discount_type: CouponDiscountType
+    value: float
     quantity: str
     plataform: CouponPlataformUse
     company_id: UUID4
