@@ -4,7 +4,8 @@ from fastapi.responses import JSONResponse
 #from domain.accounts.entities import User
 from domain.coupon.exceptions import CouponAlreadyRegisteredError
 
-import use_cases
+from coupons import use_cases
+from coupons.api.container import get_dependencies
 from .serializers import (
     CreateCouponRequest, 
     CreateCouponResponse,
@@ -13,6 +14,8 @@ from .serializers import (
 
 router = APIRouter()
 router = APIRouter(default_response_class=JSONResponse)
+repo = get_dependencies().coupon_repo
+
 
 @router.post(
     '/coupons',
