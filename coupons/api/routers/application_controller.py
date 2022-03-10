@@ -4,7 +4,7 @@ from fastapi import status
 from fastapi.routing import APIRouter
 from pydantic import BaseModel, Field
 
-from config.environment import get_settings
+from coupons.config.environment import get_settings
 
 router = APIRouter()
 

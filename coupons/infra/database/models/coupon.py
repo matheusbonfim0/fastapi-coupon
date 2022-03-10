@@ -4,7 +4,7 @@ from sqlalchemy.schema import Column, Table
 from sqlalchemy.sql import func
 from sqlalchemy.types import Date, Text, Boolean
 
-from database.sqlalchemy import metadata
+from coupons.infra.database.sqlalchemy import metadata
 
 Coupon = Table(
     "coupons",

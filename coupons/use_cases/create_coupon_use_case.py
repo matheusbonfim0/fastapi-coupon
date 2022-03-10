@@ -16,14 +16,15 @@ class CreateCouponUseCase:
        company_id: UUID,
        code: str,
        expiration: date,
-       discount_type: CouponDiscountType,
+       discount_type: str,
        value: str,
        quantity: str,
-       plataform: CouponPlataformUse,
+       plataform: str,
        activated: bool = True,
     ) -> Coupon:
         coupon = await self._repo.fetch_by_company_and_coupon(
-            company_id, code
+            company_id, 
+            code
         )
         if coupon:
             raise CouponAlreadyRegisteredError(code)

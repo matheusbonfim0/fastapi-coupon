@@ -3,9 +3,10 @@ from datetime import date
 from typing import Literal,Optional
 from uuid import UUID
 
-from pydantic import BaseModel, Field, validator
+from pydantic import UUID4, BaseModel, Field, validator
+from coupons.domain.coupon.entities import CouponDiscountType, CouponPlataformUse
 
-from utils import validate
+from coupons.utils import validate
 
 
 class CreateCouponRequest(BaseModel):
@@ -20,7 +21,7 @@ class CreateCouponRequest(BaseModel):
         title="Coupon expiration date ex.: 2015-05-18",
         description="This is the coupon expiration for promotion"
     )
-    discount_type: Literal['percent', 'value']
+    discount_type: CouponDiscountType
     value: str = Field(
         ...,
         title="Coupon Value",
@@ -32,7 +33,7 @@ class CreateCouponRequest(BaseModel):
         description="This is the quantity the coupons will be available",
         max_length=4,
     )
-    plataform: Optional[Literal['all', 'ally', 'orb', 'xpert']]
+    plataform: CouponPlataformUse
 
     @validator("expiration")
     def validate_expiration(cls, expiration):
@@ -41,13 +42,13 @@ class CreateCouponRequest(BaseModel):
         return expiration
 
 class CreateCouponResponse(BaseModel):
-    id: UUID
+    id: UUID4
     code: str
     expire: date
-    discount_type: Literal['percent', 'value']
+    discount_type: CouponDiscountType
     value: str
     quantity: str
-    plataform: Optional[Literal['all', 'ally', 'orb', 'xpert']]
+    plataform: CouponPlataformUse
     company_id: UUID
     activated: bool
 
