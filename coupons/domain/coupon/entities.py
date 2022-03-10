@@ -9,7 +9,7 @@ class CouponDiscountType(str, Enum):
     cash_value = 'value'
 
 class CouponPlataformUse(str, Enum):
-    all_ = 'all'
+    all = 'all'
     ally = 'ally'
     orb = 'orb'
     xpert = 'xpert'

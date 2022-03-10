@@ -9,4 +9,4 @@ class CouponAlreadyRegisteredError(Exception):
         self.code = code
 
     def as_dict(self):
-        return {"message": self.message, "code": self.code}
+        return {"message": self.msg, "code": self.code}

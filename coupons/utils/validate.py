@@ -1,17 +1,16 @@
 import datetime
+from datetime import date
 
-from domain.coupon.entities import Coupon
-
-def date_format(date: str) -> bool:
+def date_format(_date: str) -> bool:
     try: 
-        datetime.datetime.strftime(date, '%Y-%m-%d')
+        datetime.datetime.strftime(_date, '%Y-%m-%d')
         return True
     except ValueError:
         return False
 
-def expiry_date_greater_than_current_date(user_input: Coupon) -> bool:
+def expiry_date_greater_than_current_date(expiration: str) -> bool:
     try: 
-        user_input.expiration < datetime 
+        expiration > date.today()
         return True
     except Exception:
         return False

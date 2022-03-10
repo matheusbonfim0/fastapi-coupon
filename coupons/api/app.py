@@ -1,8 +1,8 @@
 from fastapi.applications import FastAPI
 from toolz import pipe
 
-from api.routers import register_routers as register_routers
-from config.environment import Settings
+from coupons.api.routers import register_routers as register_routers
+from coupons.config.environment import Settings
 
 
 def create_instance(settings: Settings) -> FastAPI:
