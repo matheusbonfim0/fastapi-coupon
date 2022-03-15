@@ -14,7 +14,7 @@ async def get_current_user(
     authorization: HTTPAuthorizationCredentials = Depends(authorization),
 ) -> User:
     headers = {"Authorization": f'Bearer {authorization.credentials}'}
-    response = requests.post(f"{settings.ORB_URL}", headers=headers)
+    response = requests.post(f"{settings.ORB_URL}/login", headers=headers)
 
     if response.status_code != 200:
         raise HTTPException(status_code=401)
