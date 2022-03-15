@@ -7,7 +7,7 @@ from pydantic import BaseSettings, PostgresDsn
 
 class Settings(BaseSettings):
     DATABASE_URL: PostgresDsn = (
-        "postgresql+asyncpg://admin:admin@localhost:5432/fastapi"
+        "postgresql://postgres:password@localhost:5432/coupons_develop"
     )
     WEB_APP_TITLE: str = "Coupons API"
     WEB_APP_DESCRIPTION: str = "Coupons backend api "
