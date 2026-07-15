@@ -1,4 +1,4 @@
-from sqlalchemy import TIMESTAMP, UniqueConstraint, null, text
+from sqlalchemy import Integer, Numeric, TIMESTAMP, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.schema import Column, Table
 from sqlalchemy.sql import func
@@ -9,14 +9,14 @@ from coupons.infra.database.sqlalchemy import metadata
 Coupon = Table(
     "coupons",
     metadata,
-    Column("id", UUID(), primary_key=True, server_default=text("uuid_generate_v4()")),
+    Column("id", UUID(as_uuid=True), primary_key=True),
     Column("code", Text(), nullable=False),
     Column("expire_at", Date(), nullable=False),
     Column("discount_type", Text(), nullable=False),
-    Column("value", Text(), nullable=False),
-    Column("quantity", Text(), nullable=False),
+    Column("value", Numeric(12, 2), nullable=False),
+    Column("quantity", Integer(), nullable=False),
     Column("plataform", Text(), nullable=False),
-    Column("company_id", UUID(), nullable=False),
+    Column("company_id", UUID(as_uuid=True), nullable=False),
     Column("activated", Boolean(), nullable=False),
     Column("created_at", TIMESTAMP, server_default=func.now()),
     Column(

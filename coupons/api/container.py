@@ -11,7 +11,7 @@ class Dependencies:
 
 def _build_dependencies() -> Callable[[], Dependencies]:
     deps = Dependencies(
-        coupon_repo=cast(CouponRepo, CouponRepoSQLAlchemy),
+        coupon_repo=cast(CouponRepo, CouponRepoSQLAlchemy()),
     )
 
     def fn() -> Dependencies:

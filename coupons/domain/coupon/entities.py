@@ -20,7 +20,7 @@ class Coupon(BaseModel):
     expiration: date
     discount_type: CouponDiscountType
     value: float
-    quantity: str
+    quantity: int
     plataform: CouponPlataformUse
     company_id: UUID4
     activated: bool
